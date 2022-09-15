@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Models;
 
 namespace InscripcionASP
 {
@@ -24,6 +26,9 @@ namespace InscripcionASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<InscripciondbContext>(options =>
+                    options.UseMySQL(Configuration.GetConnectionString("InscripciondbContext")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

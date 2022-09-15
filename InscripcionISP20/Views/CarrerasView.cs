@@ -32,7 +32,7 @@ namespace Desktop.Views
         }
         private async void GetAll(string txtBusqueda)
         {
-            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAll(filter: c => c.Nombre.Contains(txtBusqueda), orderBy: c => c.OrderBy(c => c.Nombre));
+            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAllAsync(filter: c => c.Nombre.Contains(txtBusqueda), orderBy: c => c.OrderBy(c => c.Nombre));
         }
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
