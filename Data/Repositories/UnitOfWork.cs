@@ -109,6 +109,7 @@ namespace Data.Repositories
         public void Save()
         {
             context.SaveChanges();
+            context.ChangeTracker.Clear();
         }
 
         private bool disposed = false;

@@ -30,7 +30,8 @@ namespace Data.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySQL("Server=127.0.0.1;Database=inscripciondb;Uid=root;Pwd=milton;");
+                //optionsBuilder.UseMySQL("Server=127.0.0.1;Database=inscripciondb;Uid=root;Pwd=milton;");
+                optionsBuilder.UseMySQL("Server=184.175.77.148;Database=smartsof_inscripciondb;Uid=smartsof_gestion2022;Pwd=gestion2022;");
             }
         }
 
@@ -48,8 +49,8 @@ namespace Data.Models
 
                 entity.Property(e => e.Dni)
                     .HasColumnType("int(11)")
-                    .HasColumnName("DNI")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnName("DNI");
+                   
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(30)
@@ -69,8 +70,7 @@ namespace Data.Models
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.CarreraId)
-                    .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.CarreraId1)
                     .HasColumnType("int(11)")
@@ -120,16 +120,14 @@ namespace Data.Models
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.AlumnoId)
-                    .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.AlumnoId1)
                     .HasColumnType("int(11)")
                     .HasColumnName("Alumno_Id");
 
                 entity.Property(e => e.MateriaCicloLectivoId)
-                    .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.MateriasCicloLectivoId)
                     .HasColumnType("int(11)")
@@ -159,16 +157,14 @@ namespace Data.Models
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.CicloLectivoId)
-                    .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.CicloLectivoId1)
                     .HasColumnType("int(11)")
                     .HasColumnName("CicloLectivo_Id");
 
                 entity.Property(e => e.MateriaId)
-                    .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.MateriaId1)
                     .HasColumnType("int(11)")
@@ -196,8 +192,7 @@ namespace Data.Models
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.AnioCarreraId)
-                    .HasColumnType("int(11)")
-                    .HasDefaultValueSql("'NULL'");
+                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.AnioCarreraId1)
                     .HasColumnType("int(11)")

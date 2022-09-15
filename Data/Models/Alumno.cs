@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 #nullable disable
 
@@ -14,7 +15,9 @@ namespace Data.Models
 
         public int Id { get; set; }
         public string ApellidoNombre { get; set; }
-        public int? Dni { get; set; }
+
+        [DefaultValue(0)]
+        public int Dni { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
 

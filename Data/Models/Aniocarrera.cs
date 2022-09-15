@@ -14,7 +14,7 @@ namespace Data.Models
 
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int? CarreraId { get; set; }
+        public int CarreraId { get; set; }
         public int CarreraId1 { get; set; }
 
         public virtual Carrera CarreraId1Navigation { get; set; }

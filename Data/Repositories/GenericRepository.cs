@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Linq;
 using System.Text;
 using Data.Models;
+using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
@@ -21,24 +22,19 @@ namespace Data.Repositories
             this.dbSet = context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> GetAll(
+        public virtual async Task<IEnumerable<TEntity>> GetAll(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
             bool ignoreQueryFilters = false)
         {
-            IQueryable<TEntity> query = dbSet;
+            IQueryable<TEntity> query = dbSet;// context.Set<TEntity>(); //
 
             if (filter != null)
             {
                 query = query.Where(filter);
             }
 
-            //foreach (var includeProperty in includeProperties.Split
-            //    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            //{
-            //    query = query.Include(includeProperty);
-            //}
             if (include != null)
             {
                 query = include(query);
@@ -51,13 +47,95 @@ namespace Data.Repositories
 
             if (orderBy != null)
             {
-                return orderBy(query).AsNoTracking().ToList();
+                return await orderBy(query).AsNoTracking().ToListAsync();
             }
             else
             {
-                return query.AsNoTracking().ToList();
+                return await query.AsNoTracking().ToListAsync();
             }
         }
+
+        /*public virtual async Task<IEnumerable<TEntity>> GetAllAsync(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
+            bool ignoreQueryFilters = false)
+        {
+            //IQueryable<TEntity> query = dbSet;
+
+            if (filter != null)
+            {
+                if (include != null)
+                {
+                    if (ignoreQueryFilters)
+                    {
+                        if (orderBy != null)
+                            return await orderBy(include(context.Set<TEntity>().Where(filter)
+                                   .IgnoreQueryFilters()
+                                   .AsNoTracking())).ToListAsync();
+                        else
+                            return await include(context.Set<TEntity>().Where(filter)
+                                   .IgnoreQueryFilters()
+                                   .AsNoTracking()).ToListAsync();
+                    }
+                    else
+                    {
+                        if (orderBy != null)
+                            return await orderBy(include(context.Set<TEntity>().Where(filter)
+                                         .AsNoTracking())).ToListAsync();
+                        else
+                            return await include(context.Set<TEntity>().Where(filter)
+                                         .AsNoTracking()).ToListAsync();
+                    }
+                }
+                else
+                {
+                    if (ignoreQueryFilters)
+                    {
+                        if (orderBy != null)
+                            return await orderBy(context.Set<TEntity>().Where(filter)
+                                         .IgnoreQueryFilters()
+                                         .AsNoTracking()).ToListAsync();
+                        else
+                            return await context.Set<TEntity>().Where(filter)
+                                         .IgnoreQueryFilters()
+                                         .AsNoTracking().ToListAsync();
+                    }
+                    else
+                    {
+                        if (orderBy != null)
+                            return await orderBy(context.Set<TEntity>().Where(filter)
+                                   .AsNoTracking()).ToListAsync();
+                        else
+                            return await context.Set<TEntity>().Where(filter)
+                                   .AsNoTracking().ToListAsync();
+                    }
+                }
+            }
+            else
+            {
+                if (ignoreQueryFilters)
+                {
+                    if (orderBy != null)
+                        return await orderBy(context.Set<TEntity>()
+                                     .IgnoreQueryFilters()
+                                     .AsNoTracking()).ToListAsync();
+                    else
+                        return await context.Set<TEntity>()
+                                     .IgnoreQueryFilters()
+                                     .AsNoTracking().ToListAsync();
+                }
+                else
+                {
+                    if (orderBy != null)
+                        return await orderBy(context.Set<TEntity>()
+                                     .AsNoTracking()).ToListAsync();
+                    else
+                        return await context.Set<TEntity>()
+                                     .AsNoTracking().ToListAsync();
+                }
+            }
+        }*/
 
         public virtual TEntity GetByID(object id)
         {

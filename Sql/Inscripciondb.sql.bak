@@ -1,0 +1,115 @@
+-- MySQL Workbench Synchronization
+-- Generated: 2022-09-08 16:39
+-- Model: New Model
+-- Version: 1.0
+-- Project: Name of the project
+-- Author: Ruben A Ramirez
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+CREATE SCHEMA IF NOT EXISTS `inscripcionDB` DEFAULT CHARACTER SET utf8 ;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`Carrera` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`AnioCarrera` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `CarreraId` INT(11) NULL DEFAULT NULL,
+  `Carrera_Id` INT(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `fk_AnioCarrera_Carrera1_idx` (`Carrera_Id` ASC),
+  CONSTRAINT `fk_AnioCarrera_Carrera1`
+    FOREIGN KEY (`Carrera_Id`)
+    REFERENCES `inscripcionDB`.`Carrera` (`Id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`Materia` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `AnioCarreraId` INT(11) NULL DEFAULT NULL,
+  `AnioCarrera_Id` INT(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `fk_Materia_AnioCarrera1_idx` (`AnioCarrera_Id` ASC),
+  CONSTRAINT `fk_Materia_AnioCarrera1`
+    FOREIGN KEY (`AnioCarrera_Id`)
+    REFERENCES `inscripcionDB`.`AnioCarrera` (`Id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`Alumno` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ApellidoNombre` VARCHAR(60) NULL DEFAULT NULL,
+  `DNI` INT(11) NULL DEFAULT NULL,
+  `Telefono` VARCHAR(20) NULL DEFAULT NULL,
+  `Email` VARCHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`CicloLectivo` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`Inscripcion` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `AlumnoId` INT(11) NULL DEFAULT NULL,
+  `MateriaCicloLectivoId` INT(11) NULL DEFAULT NULL,
+  `Alumno_Id` INT(11) NOT NULL,
+  `MateriasCicloLectivo_Id` INT(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `fk_Inscripcion_Alumno1_idx` (`Alumno_Id` ASC) VISIBLE,
+  INDEX `fk_Inscripcion_MateriasCicloLectivo1_idx` (`MateriasCicloLectivo_Id` ASC),
+  CONSTRAINT `fk_Inscripcion_Alumno1`
+    FOREIGN KEY (`Alumno_Id`)
+    REFERENCES `inscripcionDB`.`Alumno` (`Id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Inscripcion_MateriasCicloLectivo1`
+    FOREIGN KEY (`MateriasCicloLectivo_Id`)
+    REFERENCES `inscripcionDB`.`MateriaCicloLectivo` (`Id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE IF NOT EXISTS `inscripcionDB`.`MateriaCicloLectivo` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `CicloLectivoId` INT(11) NULL DEFAULT NULL,
+  `MateriaId` INT(11) NULL DEFAULT NULL,
+  `CicloLectivo_Id` INT(11) NOT NULL,
+  `Materia_Id` INT(11) NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `fk_MateriasCicloLectivo_CicloLectivo1_idx` (`CicloLectivo_Id` ASC),
+  INDEX `fk_MateriasCicloLectivo_Materia1_idx` (`Materia_Id` ASC),
+  CONSTRAINT `fk_MateriasCicloLectivo_CicloLectivo1`
+    FOREIGN KEY (`CicloLectivo_Id`)
+    REFERENCES `inscripcionDB`.`CicloLectivo` (`Id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_MateriasCicloLectivo_Materia1`
+    FOREIGN KEY (`Materia_Id`)
+    REFERENCES `inscripcionDB`.`Materia` (`Id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
