@@ -9,6 +9,7 @@ using Models;
 
 namespace InscripcionASP.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ApiCarrerasController : ControllerBase
