@@ -1,6 +1,6 @@
 using System;
 
-namespace InscripcionWeb.Models
+namespace InscripcionASP.Models
 {
     public class ErrorViewModel
     {
