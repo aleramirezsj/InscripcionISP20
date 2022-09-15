@@ -10,7 +10,7 @@ namespace Data.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-         Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null,
+         Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null,
             bool ignoreQueryFilters=false);

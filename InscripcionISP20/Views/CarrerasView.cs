@@ -26,9 +26,9 @@ namespace Desktop.Views
 
         }
 
-        private async  void GetAll()
+        private async void GetAll()
         {
-            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAll();
+            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAllAsync();
         }
         private async void GetAll(string txtBusqueda)
         {
