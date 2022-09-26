@@ -33,6 +33,7 @@
             this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
+            this.cicloLectivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.añoCarreraToolStripMenuItem = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             this.iconMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iconMenuItem2,
+            this.cicloLectivoToolStripMenuItem});
             this.añoCarreraToolStripMenuItem});
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.HouseChimney;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Crimson;
@@ -97,6 +99,12 @@
             this.iconMenuItem4.Text = "Salir del sistema";
             this.iconMenuItem4.Click += new System.EventHandler(this.iconMenuItem4_Click);
             // 
+            // cicloLectivoToolStripMenuItem
+            // 
+            this.cicloLectivoToolStripMenuItem.Name = "cicloLectivoToolStripMenuItem";
+            this.cicloLectivoToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.cicloLectivoToolStripMenuItem.Text = "Ciclo Lectivo";
+            this.cicloLectivoToolStripMenuItem.Click += new System.EventHandler(this.cicloLectivoToolStripMenuItem_Click);
             // añoCarreraToolStripMenuItem
             // 
             this.añoCarreraToolStripMenuItem.IconChar = FontAwesome.Sharp.IconChar.Calendar;
@@ -132,6 +140,7 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem cicloLectivoToolStripMenuItem;
         private FontAwesome.Sharp.IconMenuItem añoCarreraToolStripMenuItem;
     }
 }
