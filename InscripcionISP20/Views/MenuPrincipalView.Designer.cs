@@ -33,6 +33,7 @@
             this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
+            this.añoCarreraToolStripMenuItem = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +51,8 @@
             // iconMenuItem1
             // 
             this.iconMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iconMenuItem2});
+            this.iconMenuItem2,
+            this.añoCarreraToolStripMenuItem});
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.HouseChimney;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Crimson;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -91,9 +93,19 @@
             this.iconMenuItem4.IconSize = 20;
             this.iconMenuItem4.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iconMenuItem4.Name = "iconMenuItem4";
-            this.iconMenuItem4.Size = new System.Drawing.Size(184, 26);
+            this.iconMenuItem4.Size = new System.Drawing.Size(162, 26);
             this.iconMenuItem4.Text = "Salir del sistema";
             this.iconMenuItem4.Click += new System.EventHandler(this.iconMenuItem4_Click);
+            // 
+            // añoCarreraToolStripMenuItem
+            // 
+            this.añoCarreraToolStripMenuItem.IconChar = FontAwesome.Sharp.IconChar.Calendar;
+            this.añoCarreraToolStripMenuItem.IconColor = System.Drawing.Color.Black;
+            this.añoCarreraToolStripMenuItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.añoCarreraToolStripMenuItem.Name = "añoCarreraToolStripMenuItem";
+            this.añoCarreraToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.añoCarreraToolStripMenuItem.Text = "Año Carrera";
+            this.añoCarreraToolStripMenuItem.Click += new System.EventHandler(this.añoCarreraToolStripMenuItem_Click);
             // 
             // MenuPrincipalView
             // 
@@ -120,5 +132,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
+        private FontAwesome.Sharp.IconMenuItem añoCarreraToolStripMenuItem;
     }
 }

@@ -36,5 +36,12 @@ namespace Desktop
         {
             this.Close();
         }
+
+        private void añoCarreraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IUnitOfWork unitOfWork = new UnitOfWork();
+            var anioCarreraView = new AnioCarreraView(unitOfWork);
+            anioCarreraView.ShowDialog();
+        }
     }
 }
