@@ -34,6 +34,7 @@
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
             this.cicloLectivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.añoCarreraToolStripMenuItem = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +54,7 @@
             this.iconMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iconMenuItem2,
             this.cicloLectivoToolStripMenuItem});
+            this.añoCarreraToolStripMenuItem});
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.HouseChimney;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Crimson;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -103,6 +105,15 @@
             this.cicloLectivoToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.cicloLectivoToolStripMenuItem.Text = "Ciclo Lectivo";
             this.cicloLectivoToolStripMenuItem.Click += new System.EventHandler(this.cicloLectivoToolStripMenuItem_Click);
+            // añoCarreraToolStripMenuItem
+            // 
+            this.añoCarreraToolStripMenuItem.IconChar = FontAwesome.Sharp.IconChar.Calendar;
+            this.añoCarreraToolStripMenuItem.IconColor = System.Drawing.Color.Black;
+            this.añoCarreraToolStripMenuItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.añoCarreraToolStripMenuItem.Name = "añoCarreraToolStripMenuItem";
+            this.añoCarreraToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.añoCarreraToolStripMenuItem.Text = "Año Carrera";
+            this.añoCarreraToolStripMenuItem.Click += new System.EventHandler(this.añoCarreraToolStripMenuItem_Click);
             // 
             // MenuPrincipalView
             // 
@@ -130,5 +141,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem cicloLectivoToolStripMenuItem;
+        private FontAwesome.Sharp.IconMenuItem añoCarreraToolStripMenuItem;
     }
 }
