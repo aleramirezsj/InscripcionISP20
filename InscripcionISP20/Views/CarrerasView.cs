@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace Desktop.Views
 {
@@ -28,7 +29,7 @@ namespace Desktop.Views
 
         private async void GetAll()
         {
-            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAllAsync();
+            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAllAsync(orderBy: c => c.OrderBy(c => c.Nombre));
         }
         private async void GetAll(string txtBusqueda)
         {
@@ -37,7 +38,6 @@ namespace Desktop.Views
 
         private void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            GetAll(txtBusqueda.Text);
         }
 
         private void gridCarreras_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -69,6 +69,7 @@ namespace Desktop.Views
         {
             IrAPestañaDetalle();
             LimpiarControles();
+            Editando = false;
         }
 
         private void IrAPestañaDetalle()
@@ -133,6 +134,22 @@ namespace Desktop.Views
             {
                 unitOfWork.CarreraRepository.Delete(carrera.Id);
                 unitOfWork.Save();
+                GetAll();
+            }
+
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            GetAll(txtBusqueda.Text);
+        }
+
+        private void txtBusqueda_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnBuscar.PerformClick();
             }
         }
     }

@@ -55,10 +55,15 @@ namespace Data.Repositories
             }
         }
 
-
         public virtual TEntity GetByID(object id)
         {
             var entidad = dbSet.Find(id);
+            context.Entry(entidad).State = EntityState.Detached;
+            return entidad;
+        }
+        public virtual async Task<TEntity> GetByIDAsync(object id)
+        {
+            var entidad = await dbSet.FindAsync(id);
             context.Entry(entidad).State = EntityState.Detached;
             return entidad;
         }
@@ -66,6 +71,10 @@ namespace Data.Repositories
         public virtual void Add(TEntity entity)
         {
             dbSet.Add(entity);
+        }
+        public virtual async Task AddAsync(TEntity entity)
+        {
+            await dbSet.AddAsync(entity);
         }
 
         public virtual void Delete(object id)
@@ -84,6 +93,14 @@ namespace Data.Repositories
             //context.ChangeTracker.Clear();
             dbSet.Remove(entityToDelete);
         }
+
+        public virtual async Task DeleteAsync(object id)
+        {
+            TEntity entityToDelete = await dbSet.FindAsync(id);
+            Delete(entityToDelete);
+        }
+
+        
 
         public virtual void Update(TEntity entityToUpdate)
         {
