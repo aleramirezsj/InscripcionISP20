@@ -37,13 +37,6 @@ namespace Desktop
             this.Close();
         }
 
-        private void cicloLectivoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IUnitOfWork unitOfWork = new UnitOfWork();
-            var cicloLectivoView = new CicloLectivoView(unitOfWork);
-            cicloLectivoView.ShowDialog();
-         }
-
         private void añoCarreraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IUnitOfWork unitOfWork = new UnitOfWork();
