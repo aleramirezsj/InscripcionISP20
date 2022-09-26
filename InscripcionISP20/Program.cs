@@ -1,3 +1,6 @@
+using Data.Interfaces;
+using Data.Repositories;
+using Desktop.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +20,9 @@ namespace Desktop
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuPrincipalView());
+            IUnitOfWork unitOfWork = new UnitOfWork();
+            //var carrerasView = new CarrerasView(unitOfWork);
+            Application.Run(new MateriasView(unitOfWork));
         }
     }
 }
