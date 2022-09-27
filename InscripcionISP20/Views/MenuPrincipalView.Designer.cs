@@ -31,9 +31,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
+            this.añoCarreraToolStripMenuItem = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
-            this.añoCarreraToolStripMenuItem = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,8 @@
             // 
             this.iconMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iconMenuItem2,
-            this.añoCarreraToolStripMenuItem});
+            this.añoCarreraToolStripMenuItem,
+            this.iconMenuItem5});
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.HouseChimney;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Crimson;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -73,6 +75,16 @@
             this.iconMenuItem2.Size = new System.Drawing.Size(184, 26);
             this.iconMenuItem2.Text = "Carreras";
             this.iconMenuItem2.Click += new System.EventHandler(this.iconMenuItem2_Click);
+            // 
+            // añoCarreraToolStripMenuItem
+            // 
+            this.añoCarreraToolStripMenuItem.IconChar = FontAwesome.Sharp.IconChar.Calendar;
+            this.añoCarreraToolStripMenuItem.IconColor = System.Drawing.Color.Black;
+            this.añoCarreraToolStripMenuItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.añoCarreraToolStripMenuItem.Name = "añoCarreraToolStripMenuItem";
+            this.añoCarreraToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.añoCarreraToolStripMenuItem.Text = "Año Carrera";
+            this.añoCarreraToolStripMenuItem.Click += new System.EventHandler(this.añoCarreraToolStripMenuItem_Click);
             // 
             // iconMenuItem3
             // 
@@ -97,15 +109,17 @@
             this.iconMenuItem4.Text = "Salir del sistema";
             this.iconMenuItem4.Click += new System.EventHandler(this.iconMenuItem4_Click);
             // 
-            // añoCarreraToolStripMenuItem
+            // iconMenuItem5
             // 
-            this.añoCarreraToolStripMenuItem.IconChar = FontAwesome.Sharp.IconChar.Calendar;
-            this.añoCarreraToolStripMenuItem.IconColor = System.Drawing.Color.Black;
-            this.añoCarreraToolStripMenuItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.añoCarreraToolStripMenuItem.Name = "añoCarreraToolStripMenuItem";
-            this.añoCarreraToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.añoCarreraToolStripMenuItem.Text = "Año Carrera";
-            this.añoCarreraToolStripMenuItem.Click += new System.EventHandler(this.añoCarreraToolStripMenuItem_Click);
+            this.iconMenuItem5.IconChar = FontAwesome.Sharp.IconChar.School;
+            this.iconMenuItem5.IconColor = System.Drawing.Color.Black;
+            this.iconMenuItem5.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuItem5.IconSize = 20;
+            this.iconMenuItem5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuItem5.Name = "iconMenuItem5";
+            this.iconMenuItem5.Size = new System.Drawing.Size(184, 26);
+            this.iconMenuItem5.Text = "Materias";
+            this.iconMenuItem5.Click += new System.EventHandler(this.iconMenuItem5_Click);
             // 
             // MenuPrincipalView
             // 
@@ -133,5 +147,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
         private FontAwesome.Sharp.IconMenuItem añoCarreraToolStripMenuItem;
+        private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
     }
 }

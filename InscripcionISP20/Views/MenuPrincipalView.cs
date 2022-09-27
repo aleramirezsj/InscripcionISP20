@@ -43,5 +43,12 @@ namespace Desktop
             var anioCarreraView = new AnioCarreraView(unitOfWork);
             anioCarreraView.ShowDialog();
         }
+
+        private void iconMenuItem5_Click(object sender, EventArgs e)
+        {
+            IUnitOfWork unitOfWork = new UnitOfWork();
+            var materiasView = new MateriasView(unitOfWork);
+            materiasView.ShowDialog();
+        }
     }
 }

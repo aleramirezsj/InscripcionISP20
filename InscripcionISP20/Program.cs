@@ -20,9 +20,9 @@ namespace Desktop
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            IUnitOfWork unitOfWork = new UnitOfWork();
+            //IUnitOfWork unitOfWork = new UnitOfWork();
             //var carrerasView = new CarrerasView(unitOfWork);
-            Application.Run(new MateriasView(unitOfWork));
+            Application.Run(new MenuPrincipalView());
         }
     }
 }
