@@ -58,6 +58,7 @@ namespace Desktop.Views
                 unitOfWork.CiclolectivoRepository.Delete(ciclo.Id);
                 unitOfWork.Save();
                 GetCicloLectivo();
+
             }
         }
 

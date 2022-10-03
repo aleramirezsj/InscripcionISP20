@@ -42,6 +42,7 @@ namespace Desktop
             IUnitOfWork unitOfWork = new UnitOfWork();
             var cicloLectivoView = new CicloLectivoView(unitOfWork);
             cicloLectivoView.ShowDialog();
+
         }
     }
 }
