@@ -25,9 +25,21 @@ namespace Desktop.Views
 
         private async void CargarComboBox()
         {
-            CboAño.DataSource = await unitOfWork.AniocarreraRepository.GetAllAsync(include:c=>c.Include(c=>c.CarreraId1Navigation));
+             var aniosCarrera =await unitOfWork.AniocarreraRepository.GetAllAsync(include:c=>c.Include(c=>c.CarreraId1Navigation));
             CboAño.DisplayMember = "AñoCarrera";
             CboAño.ValueMember = "Id";
+            CboAño.DataSource = aniosCarrera.ToList();
+
+            AutoCompleteStringCollection autoCompletado = new AutoCompleteStringCollection();
+            foreach (Aniocarrera item in aniosCarrera)
+            {
+                //agrega el texto encontrado en la segunda columna del datatable
+                //si el datatable no tiene 2da columna va a dar error
+                autoCompletado.Add(item.AñoCarrera.ToString());
+            }
+            CboAño.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboAño.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboAño.AutoCompleteCustomSource = autoCompletado;
         }
 
         private async void GetAll()

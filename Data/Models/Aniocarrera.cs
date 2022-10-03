@@ -23,7 +23,9 @@ namespace Data.Models
         [NotMapped]
         public string AñoCarrera
         {
-            get { return $"{Nombre} {CarreraId1Navigation.Nombre}"; }
+            get { return CarreraId1Navigation!=null?
+                    $"{Nombre} {CarreraId1Navigation.Nombre}":
+                    Nombre; }
         }
 
         public override string ToString()
