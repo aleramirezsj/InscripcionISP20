@@ -57,5 +57,12 @@ namespace Desktop
             var cicloLectivoView = new CicloLectivoView(unitOfWork);
             cicloLectivoView.ShowDialog();
         }
+
+        private void iconMenuItem7_Click(object sender, EventArgs e)
+        {
+            IUnitOfWork unitOfWork = new UnitOfWork();
+            var alumnoView = new AlumnoView(unitOfWork);
+            alumnoView.ShowDialog();
+        }
     }
 }
