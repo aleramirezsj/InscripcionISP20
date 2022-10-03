@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -19,5 +20,15 @@ namespace Data.Models
 
         public virtual Carrera CarreraId1Navigation { get; set; }
         public virtual ICollection<Materia> Materias { get; set; }
+        [NotMapped]
+        public string AñoCarrera
+        {
+            get { return $"{Nombre} {CarreraId1Navigation.Nombre}"; }
+        }
+
+        public override string ToString()
+        {
+            return $"{Nombre} {CarreraId1Navigation.Nombre}";
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Desktop.Views
 {
@@ -24,14 +25,14 @@ namespace Desktop.Views
 
         private async void CargarComboBox()
         {
-            CboAño.DataSource = await unitOfWork.AniocarreraRepository.GetAllAsync();
-            CboAño.DisplayMember = "Nombre";
+            CboAño.DataSource = await unitOfWork.AniocarreraRepository.GetAllAsync(include:c=>c.Include(c=>c.CarreraId1Navigation));
+            CboAño.DisplayMember = "AñoCarrera";
             CboAño.ValueMember = "Id";
         }
 
         private async void GetAll()
         {
-            listaMaterias.DataSource = await unitOfWork.MateriaRepository.GetAllAsync(orderBy: c => c.OrderBy(c => c.Nombre));
+            listaMaterias.DataSource = await unitOfWork.MateriaRepository.GetAllAsync(include: c => c.Include(c => c.AnioCarreraId1Navigation).ThenInclude(c=>c.CarreraId1Navigation),orderBy: c => c.OrderBy(c => c.Nombre));
 
         }
 
@@ -128,8 +129,8 @@ namespace Desktop.Views
                     columna.Visible = false;
                 if (columna.Name == "AnioCarreraId")
                     columna.Visible = false;
-                if (columna.Name == "AnioCarreraId1Navigation")
-                    columna.Visible = false;
+                //if (columna.Name == "AnioCarreraId1Navigation")
+                //    columna.Visible = false;
                 if (columna.Name == "Id")
                     columna.Width = 60;
                 if (columna.Name == "Materiasciclolectivos")
