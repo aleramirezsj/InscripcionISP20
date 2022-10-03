@@ -21,5 +21,6 @@ namespace Data.Models
         public virtual Ciclolectivo CicloLectivoId1Navigation { get; set; }
         public virtual Materia MateriaId1Navigation { get; set; }
         public virtual ICollection<Inscripcion> Inscripcions { get; set; }
+
     }
 }

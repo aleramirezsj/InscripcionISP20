@@ -118,17 +118,18 @@
             this.btnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalir.IconSize = 20;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalir.Location = new System.Drawing.Point(508, 20);
+            this.btnSalir.Location = new System.Drawing.Point(508, 168);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 32;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminar.Location = new System.Drawing.Point(508, 108);
+            this.btnEliminar.Location = new System.Drawing.Point(508, 79);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 31;
@@ -139,7 +140,7 @@
             // btnModificar
             // 
             this.btnModificar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnModificar.Location = new System.Drawing.Point(508, 79);
+            this.btnModificar.Location = new System.Drawing.Point(508, 50);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(75, 23);
             this.btnModificar.TabIndex = 30;
@@ -150,7 +151,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.Location = new System.Drawing.Point(508, 50);
+            this.btnNuevo.Location = new System.Drawing.Point(508, 21);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 23);
             this.btnNuevo.TabIndex = 29;
@@ -173,7 +174,7 @@
             this.GridMaterias.RowHeadersVisible = false;
             this.GridMaterias.RowTemplate.Height = 25;
             this.GridMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridMaterias.Size = new System.Drawing.Size(496, 130);
+            this.GridMaterias.Size = new System.Drawing.Size(496, 141);
             this.GridMaterias.TabIndex = 28;
             this.GridMaterias.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.GridMaterias_DataBindingComplete);
             // 
@@ -227,7 +228,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(167, 17);
+            this.label5.Location = new System.Drawing.Point(161, 29);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 15);
             this.label5.TabIndex = 37;
@@ -236,15 +237,16 @@
             // nudId
             // 
             this.nudId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nudId.Location = new System.Drawing.Point(222, 15);
+            this.nudId.Enabled = false;
+            this.nudId.Location = new System.Drawing.Point(221, 27);
             this.nudId.Name = "nudId";
-            this.nudId.Size = new System.Drawing.Size(104, 23);
+            this.nudId.Size = new System.Drawing.Size(194, 23);
             this.nudId.TabIndex = 36;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(184, 100);
+            this.label4.Location = new System.Drawing.Point(161, 88);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 15);
             this.label4.TabIndex = 35;
@@ -253,7 +255,7 @@
             // CboAño
             // 
             this.CboAño.FormattingEnabled = true;
-            this.CboAño.Location = new System.Drawing.Point(222, 97);
+            this.CboAño.Location = new System.Drawing.Point(221, 85);
             this.CboAño.Name = "CboAño";
             this.CboAño.Size = new System.Drawing.Size(194, 23);
             this.CboAño.TabIndex = 34;
@@ -261,7 +263,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(162, 58);
+            this.label3.Location = new System.Drawing.Point(161, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 33;
@@ -269,7 +271,7 @@
             // 
             // TxtNombre
             // 
-            this.TxtNombre.Location = new System.Drawing.Point(222, 55);
+            this.TxtNombre.Location = new System.Drawing.Point(221, 56);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(194, 23);
             this.TxtNombre.TabIndex = 32;
@@ -282,7 +284,7 @@
             this.btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancelar.IconSize = 20;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(342, 145);
+            this.btnCancelar.Location = new System.Drawing.Point(341, 157);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 23);
             this.btnCancelar.TabIndex = 31;
@@ -298,7 +300,7 @@
             this.btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardar.IconSize = 20;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(162, 145);
+            this.btnGuardar.Location = new System.Drawing.Point(161, 157);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(106, 23);
             this.btnGuardar.TabIndex = 30;

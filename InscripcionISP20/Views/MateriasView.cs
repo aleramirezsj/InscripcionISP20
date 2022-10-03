@@ -132,7 +132,14 @@ namespace Desktop.Views
                     columna.Visible = false;
                 if (columna.Name == "Id")
                     columna.Width = 60;
+                if (columna.Name == "Materiasciclolectivos")
+                    columna.Visible=false;
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
