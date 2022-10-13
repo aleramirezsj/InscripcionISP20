@@ -10,7 +10,7 @@ namespace Data.Models
     {
         public Materia()
         {
-            Materiasciclolectivos = new HashSet<Materiaciclolectivo>();
+            
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace Data.Models
         public int AnioCarreraId1 { get; set; }
         [DisplayName("Año y Carrera")]
         public virtual Aniocarrera AnioCarreraId1Navigation { get; set; }
-        public virtual ICollection<Materiaciclolectivo> Materiasciclolectivos { get; set; }
+        
     }
 }

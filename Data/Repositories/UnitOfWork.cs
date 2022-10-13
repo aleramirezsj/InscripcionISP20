@@ -15,7 +15,7 @@ namespace Data.Repositories
         private GenericRepository<Ciclolectivo> ciclolectivoRepository;
         private GenericRepository<Inscripcion> inscripcionRepository;
         private GenericRepository<Materia> materiaRepository;
-        private GenericRepository<Materiaciclolectivo> materiaciclolectivoRepository;
+        
 
 
         public GenericRepository<Alumno> AlumnoRepository
@@ -91,18 +91,7 @@ namespace Data.Repositories
                 return materiaRepository;
             }
         }
-        public GenericRepository<Materiaciclolectivo> MateriaciclolectivoRepository
-        {
-            get
-            {
-
-                if (this.materiaciclolectivoRepository == null)
-                {
-                    this.materiaciclolectivoRepository = new GenericRepository<Materiaciclolectivo>(context);
-                }
-                return materiaciclolectivoRepository;
-            }
-        }
+        
  
 
 

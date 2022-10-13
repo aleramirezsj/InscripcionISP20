@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(InscripciondbContext))]
-    [Migration("20220912194743_inicioProyecto")]
-    partial class inicioProyecto
+    [Migration("20221013180802_eliminadodeMateriaCicloLectivo")]
+    partial class eliminadodeMateriaCicloLectivo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -112,25 +112,22 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int(11)");
 
-                    b.Property<int?>("AlumnoId")
+                    b.Property<int>("AlumnoId")
                         .HasColumnType("int(11)");
 
-                    b.Property<int>("AlumnoId1")
-                        .HasColumnType("int(11)")
-                        .HasColumnName("Alumno_Id");
-
-                    b.Property<int?>("MateriaCicloLectivoId")
+                    b.Property<int>("CicloLectivoId")
                         .HasColumnType("int(11)");
 
-                    b.Property<int>("MateriasCicloLectivoId")
-                        .HasColumnType("int(11)")
-                        .HasColumnName("MateriasCicloLectivo_Id");
+                    b.Property<int>("MateriaId")
+                        .HasColumnType("int(11)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "AlumnoId1" }, "fk_Inscripcion_Alumno1_idx");
+                    b.HasIndex("AlumnoId");
 
-                    b.HasIndex(new[] { "MateriasCicloLectivoId" }, "fk_Inscripcion_MateriasCicloLectivo1_idx");
+                    b.HasIndex("CicloLectivoId");
+
+                    b.HasIndex("MateriaId");
 
                     b.ToTable("inscripcion");
                 });
@@ -160,35 +157,6 @@ namespace Data.Migrations
                     b.ToTable("materia");
                 });
 
-            modelBuilder.Entity("Data.Models.Materiaciclolectivo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int(11)");
-
-                    b.Property<int?>("CicloLectivoId")
-                        .HasColumnType("int(11)");
-
-                    b.Property<int>("CicloLectivoId1")
-                        .HasColumnType("int(11)")
-                        .HasColumnName("CicloLectivo_Id");
-
-                    b.Property<int?>("MateriaId")
-                        .HasColumnType("int(11)");
-
-                    b.Property<int>("MateriaId1")
-                        .HasColumnType("int(11)")
-                        .HasColumnName("Materia_Id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex(new[] { "CicloLectivoId1" }, "fk_MateriasCicloLectivo_CicloLectivo1_idx");
-
-                    b.HasIndex(new[] { "MateriaId1" }, "fk_MateriasCicloLectivo_Materia1_idx");
-
-                    b.ToTable("materiasciclolectivo");
-                });
-
             modelBuilder.Entity("Data.Models.Aniocarrera", b =>
                 {
                     b.HasOne("Data.Models.Carrera", "CarreraId1Navigation")
@@ -202,21 +170,29 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Inscripcion", b =>
                 {
-                    b.HasOne("Data.Models.Alumno", "AlumnoId1Navigation")
+                    b.HasOne("Data.Models.Alumno", "Alumno")
                         .WithMany("Inscripcions")
-                        .HasForeignKey("AlumnoId1")
-                        .HasConstraintName("fk_Inscripcion_Alumno1")
+                        .HasForeignKey("AlumnoId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Models.Materiaciclolectivo", "MateriasCicloLectivo")
-                        .WithMany("Inscripcions")
-                        .HasForeignKey("MateriasCicloLectivoId")
-                        .HasConstraintName("fk_Inscripcion_MateriasCicloLectivo1")
+                    b.HasOne("Data.Models.Ciclolectivo", "CicloLectivo")
+                        .WithMany()
+                        .HasForeignKey("CicloLectivoId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AlumnoId1Navigation");
+                    b.HasOne("Data.Models.Materia", "Materia")
+                        .WithMany()
+                        .HasForeignKey("MateriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("MateriasCicloLectivo");
+                    b.Navigation("Alumno");
+
+                    b.Navigation("CicloLectivo");
+
+                    b.Navigation("Materia");
                 });
 
             modelBuilder.Entity("Data.Models.Materia", b =>
@@ -228,25 +204,6 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AnioCarreraId1Navigation");
-                });
-
-            modelBuilder.Entity("Data.Models.Materiaciclolectivo", b =>
-                {
-                    b.HasOne("Data.Models.Ciclolectivo", "CicloLectivoId1Navigation")
-                        .WithMany("Materiasciclolectivos")
-                        .HasForeignKey("CicloLectivoId1")
-                        .HasConstraintName("fk_MateriasCicloLectivo_CicloLectivo1")
-                        .IsRequired();
-
-                    b.HasOne("Data.Models.Materia", "MateriaId1Navigation")
-                        .WithMany("Materiasciclolectivos")
-                        .HasForeignKey("MateriaId1")
-                        .HasConstraintName("fk_MateriasCicloLectivo_Materia1")
-                        .IsRequired();
-
-                    b.Navigation("CicloLectivoId1Navigation");
-
-                    b.Navigation("MateriaId1Navigation");
                 });
 
             modelBuilder.Entity("Data.Models.Alumno", b =>
@@ -262,21 +219,6 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Models.Carrera", b =>
                 {
                     b.Navigation("Aniocarreras");
-                });
-
-            modelBuilder.Entity("Data.Models.Ciclolectivo", b =>
-                {
-                    b.Navigation("Materiasciclolectivos");
-                });
-
-            modelBuilder.Entity("Data.Models.Materia", b =>
-                {
-                    b.Navigation("Materiasciclolectivos");
-                });
-
-            modelBuilder.Entity("Data.Models.Materiaciclolectivo", b =>
-                {
-                    b.Navigation("Inscripcions");
                 });
 #pragma warning restore 612, 618
         }

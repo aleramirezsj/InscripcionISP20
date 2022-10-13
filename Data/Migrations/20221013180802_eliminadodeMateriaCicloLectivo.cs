@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace Data.Migrations
 {
-    public partial class inicioProyecto : Migration
+    public partial class eliminadodeMateriaCicloLectivo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -92,59 +92,36 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "materiasciclolectivo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int(11)", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    CicloLectivoId = table.Column<int>(type: "int(11)", nullable: true),
-                    MateriaId = table.Column<int>(type: "int(11)", nullable: true),
-                    CicloLectivo_Id = table.Column<int>(type: "int(11)", nullable: false),
-                    Materia_Id = table.Column<int>(type: "int(11)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_materiasciclolectivo", x => x.Id);
-                    table.ForeignKey(
-                        name: "fk_MateriasCicloLectivo_CicloLectivo1",
-                        column: x => x.CicloLectivo_Id,
-                        principalTable: "ciclolectivo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "fk_MateriasCicloLectivo_Materia1",
-                        column: x => x.Materia_Id,
-                        principalTable: "materia",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "inscripcion",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int(11)", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    AlumnoId = table.Column<int>(type: "int(11)", nullable: true),
-                    MateriaCicloLectivoId = table.Column<int>(type: "int(11)", nullable: true),
-                    Alumno_Id = table.Column<int>(type: "int(11)", nullable: false),
-                    MateriasCicloLectivo_Id = table.Column<int>(type: "int(11)", nullable: false)
+                    MateriaId = table.Column<int>(type: "int(11)", nullable: false),
+                    AlumnoId = table.Column<int>(type: "int(11)", nullable: false),
+                    CicloLectivoId = table.Column<int>(type: "int(11)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_inscripcion", x => x.Id);
                     table.ForeignKey(
-                        name: "fk_Inscripcion_Alumno1",
-                        column: x => x.Alumno_Id,
+                        name: "FK_inscripcion_alumno_AlumnoId",
+                        column: x => x.AlumnoId,
                         principalTable: "alumno",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_Inscripcion_MateriasCicloLectivo1",
-                        column: x => x.MateriasCicloLectivo_Id,
-                        principalTable: "materiasciclolectivo",
+                        name: "FK_inscripcion_ciclolectivo_CicloLectivoId",
+                        column: x => x.CicloLectivoId,
+                        principalTable: "ciclolectivo",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_inscripcion_materia_MateriaId",
+                        column: x => x.MateriaId,
+                        principalTable: "materia",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -153,29 +130,24 @@ namespace Data.Migrations
                 column: "Carrera_Id");
 
             migrationBuilder.CreateIndex(
-                name: "fk_Inscripcion_Alumno1_idx",
+                name: "IX_inscripcion_AlumnoId",
                 table: "inscripcion",
-                column: "Alumno_Id");
+                column: "AlumnoId");
 
             migrationBuilder.CreateIndex(
-                name: "fk_Inscripcion_MateriasCicloLectivo1_idx",
+                name: "IX_inscripcion_CicloLectivoId",
                 table: "inscripcion",
-                column: "MateriasCicloLectivo_Id");
+                column: "CicloLectivoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_inscripcion_MateriaId",
+                table: "inscripcion",
+                column: "MateriaId");
 
             migrationBuilder.CreateIndex(
                 name: "fk_Materia_AnioCarrera1_idx",
                 table: "materia",
                 column: "AnioCarrera_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "fk_MateriasCicloLectivo_CicloLectivo1_idx",
-                table: "materiasciclolectivo",
-                column: "CicloLectivo_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "fk_MateriasCicloLectivo_Materia1_idx",
-                table: "materiasciclolectivo",
-                column: "Materia_Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -185,9 +157,6 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "alumno");
-
-            migrationBuilder.DropTable(
-                name: "materiasciclolectivo");
 
             migrationBuilder.DropTable(
                 name: "ciclolectivo");

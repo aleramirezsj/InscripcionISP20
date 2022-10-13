@@ -22,7 +22,6 @@ namespace Data.Models
         public virtual DbSet<Carrera> Carreras { get; set; }
         public virtual DbSet<Ciclolectivo> Ciclolectivos { get; set; }
         public virtual DbSet<Inscripcion> Inscripcions { get; set; }
-        public virtual DbSet<Materiaciclolectivo> Materiasciclolectivos { get; set; }
         public virtual DbSet<Materia> Materias { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -113,75 +112,24 @@ namespace Data.Models
             {
                 entity.ToTable("inscripcion");
 
-                entity.HasIndex(e => e.AlumnoId1, "fk_Inscripcion_Alumno1_idx");
-
-                entity.HasIndex(e => e.MateriasCicloLectivoId, "fk_Inscripcion_MateriasCicloLectivo1_idx");
+                
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
                 entity.Property(e => e.AlumnoId)
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.AlumnoId1)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("Alumno_Id");
+                
 
-                entity.Property(e => e.MateriaCicloLectivoId)
-                    .HasColumnType("int(11)");
+                
 
-                entity.Property(e => e.MateriasCicloLectivoId)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("MateriasCicloLectivo_Id");
+                
 
-                entity.HasOne(d => d.AlumnoId1Navigation)
-                    .WithMany(p => p.Inscripcions)
-                    .HasForeignKey(d => d.AlumnoId1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Inscripcion_Alumno1");
+                
 
-                entity.HasOne(d => d.MateriasCicloLectivo)
-                    .WithMany(p => p.Inscripcions)
-                    .HasForeignKey(d => d.MateriasCicloLectivoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_Inscripcion_MateriasCicloLectivo1");
+               
             });
 
-            modelBuilder.Entity<Materiaciclolectivo>(entity =>
-            {
-                entity.ToTable("materiasciclolectivo");
-
-                entity.HasIndex(e => e.CicloLectivoId1, "fk_MateriasCicloLectivo_CicloLectivo1_idx");
-
-                entity.HasIndex(e => e.MateriaId1, "fk_MateriasCicloLectivo_Materia1_idx");
-
-                entity.Property(e => e.Id).HasColumnType("int(11)");
-
-                entity.Property(e => e.CicloLectivoId)
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.CicloLectivoId1)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("CicloLectivo_Id");
-
-                entity.Property(e => e.MateriaId)
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e.MateriaId1)
-                    .HasColumnType("int(11)")
-                    .HasColumnName("Materia_Id");
-
-                entity.HasOne(d => d.CicloLectivoId1Navigation)
-                    .WithMany(p => p.Materiasciclolectivos)
-                    .HasForeignKey(d => d.CicloLectivoId1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_MateriasCicloLectivo_CicloLectivo1");
-
-                entity.HasOne(d => d.MateriaId1Navigation)
-                    .WithMany(p => p.Materiasciclolectivos)
-                    .HasForeignKey(d => d.MateriaId1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_MateriasCicloLectivo_Materia1");
-            });
 
             modelBuilder.Entity<Materia>(entity =>
             {

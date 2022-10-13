@@ -14,7 +14,7 @@ namespace Data.Interfaces
         GenericRepository<Ciclolectivo> CiclolectivoRepository { get; }
         GenericRepository<Inscripcion> InscripcionRepository { get; }
         GenericRepository<Materia> MateriaRepository { get; }
-        GenericRepository<Materiaciclolectivo> MateriaciclolectivoRepository { get; }
+        
         public void Save();
         void Dispose();
     }
