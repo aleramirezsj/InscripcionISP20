@@ -64,5 +64,12 @@ namespace Desktop
             var alumnoView = new AlumnoView(unitOfWork);
             alumnoView.ShowDialog();
         }
+
+        private void iconMenuItem8_Click(object sender, EventArgs e)
+        {
+            IUnitOfWork unitOfWork = new UnitOfWork();
+            var inscripcionView = new InscripcionView(unitOfWork);
+            inscripcionView.ShowDialog();
+        }
     }
 }

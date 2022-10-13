@@ -34,9 +34,10 @@
             this.añoCarreraToolStripMenuItem = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem6 = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuItem7 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
-            this.iconMenuItem7 = new FontAwesome.Sharp.IconMenuItem();
+            this.iconMenuItem8 = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,8 @@
             this.añoCarreraToolStripMenuItem,
             this.iconMenuItem5,
             this.iconMenuItem6,
-            this.iconMenuItem7});
+            this.iconMenuItem7,
+            this.iconMenuItem8});
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.HouseChimney;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Crimson;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -112,6 +114,18 @@
             this.iconMenuItem6.Text = "Ciclo Lectivo";
             this.iconMenuItem6.Click += new System.EventHandler(this.iconMenuItem6_Click);
             // 
+            // iconMenuItem7
+            // 
+            this.iconMenuItem7.IconChar = FontAwesome.Sharp.IconChar.Person;
+            this.iconMenuItem7.IconColor = System.Drawing.Color.IndianRed;
+            this.iconMenuItem7.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuItem7.IconSize = 20;
+            this.iconMenuItem7.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.iconMenuItem7.Name = "iconMenuItem7";
+            this.iconMenuItem7.Size = new System.Drawing.Size(184, 26);
+            this.iconMenuItem7.Text = "Alumnos";
+            this.iconMenuItem7.Click += new System.EventHandler(this.iconMenuItem7_Click);
+            // 
             // iconMenuItem3
             // 
             this.iconMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,17 +149,15 @@
             this.iconMenuItem4.Text = "Salir del sistema";
             this.iconMenuItem4.Click += new System.EventHandler(this.iconMenuItem4_Click);
             // 
-            // iconMenuItem7
+            // iconMenuItem8
             // 
-            this.iconMenuItem7.IconChar = FontAwesome.Sharp.IconChar.Person;
-            this.iconMenuItem7.IconColor = System.Drawing.Color.IndianRed;
-            this.iconMenuItem7.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem7.IconSize = 20;
-            this.iconMenuItem7.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.iconMenuItem7.Name = "iconMenuItem7";
-            this.iconMenuItem7.Size = new System.Drawing.Size(184, 26);
-            this.iconMenuItem7.Text = "Alumnos";
-            this.iconMenuItem7.Click += new System.EventHandler(this.iconMenuItem7_Click);
+            this.iconMenuItem8.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconMenuItem8.IconColor = System.Drawing.Color.Black;
+            this.iconMenuItem8.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuItem8.Name = "iconMenuItem8";
+            this.iconMenuItem8.Size = new System.Drawing.Size(184, 26);
+            this.iconMenuItem8.Text = "Inscripcion";
+            this.iconMenuItem8.Click += new System.EventHandler(this.iconMenuItem8_Click);
             // 
             // MenuPrincipalView
             // 
@@ -176,5 +188,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem6;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem7;
+        private FontAwesome.Sharp.IconMenuItem iconMenuItem8;
     }
 }
