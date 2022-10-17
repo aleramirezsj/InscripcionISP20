@@ -22,5 +22,10 @@ namespace Data.Models
         public string Email { get; set; }
 
         public virtual ICollection<Inscripcion> Inscripcions { get; set; }
+
+        public override string ToString()
+        {
+            return ApellidoNombre;
+        }
     }
 }

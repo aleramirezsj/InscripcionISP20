@@ -19,6 +19,10 @@ namespace Data.Models
         public int AnioCarreraId1 { get; set; }
         [DisplayName("Año y Carrera")]
         public virtual Aniocarrera AnioCarreraId1Navigation { get; set; }
-        
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }
