@@ -30,7 +30,11 @@ namespace Data.Models
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 //optionsBuilder.UseMySQL("Server=127.0.0.1;Database=inscripciondb;Uid=root;Pwd=milton;");
-                optionsBuilder.UseMySQL("Server=184.175.77.148;Database=smartsof_inscripciondb;Uid=smartsof_gestion2022;Pwd=gestion2022;");
+                optionsBuilder.UseMySql("Server=184.175.77.148;Database=smartsof_inscripciondb;Uid=smartsof_gestion2022;Pwd=gestion2022;", ServerVersion.AutoDetect("Server=184.175.77.148;Database=smartsof_inscripciondb;Uid=smartsof_gestion2022;Pwd=gestion2022;"),
+                    options => options.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null));
             }
         }
 
