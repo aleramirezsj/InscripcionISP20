@@ -27,8 +27,13 @@ namespace InscripcionASP
         {
             services.AddControllersWithViews();
             services.AddDbContext<InscripciondbContext>(options =>
-                    options.UseMySQL(Configuration.GetConnectionString("InscripciondbContext")));
-            
+                    options.UseMySql(Configuration.GetConnectionString("InscripciondbContext"), ServerVersion.AutoDetect(Configuration.GetConnectionString("InscripciondbContext")),
+                    options => options.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null)
+                ));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
