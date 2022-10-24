@@ -1,4 +1,6 @@
-﻿namespace Desktop.Views
+﻿using System.Threading.Tasks;
+
+namespace Desktop.Views
 {
     partial class InscripcionView
     {
@@ -44,6 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboCarreras = new System.Windows.Forms.ComboBox();
             this.PanelMaterias = new System.Windows.Forms.Panel();
+            this.BtnQuitarTodas = new FontAwesome.Sharp.IconButton();
             this.BtnAgregarTodas = new FontAwesome.Sharp.IconButton();
             this.BtnBuscarMateria = new FontAwesome.Sharp.IconButton();
             this.BtnQuitar = new FontAwesome.Sharp.IconButton();
@@ -59,7 +62,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LblStatusText = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgresBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.BtnQuitarTodas = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.PanelAlumno.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlumnos)).BeginInit();
@@ -257,6 +259,22 @@
             this.PanelMaterias.Size = new System.Drawing.Size(783, 327);
             this.PanelMaterias.TabIndex = 26;
             // 
+            // BtnQuitarTodas
+            // 
+            this.BtnQuitarTodas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnQuitarTodas.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.BtnQuitarTodas.IconColor = System.Drawing.Color.Black;
+            this.BtnQuitarTodas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnQuitarTodas.IconSize = 20;
+            this.BtnQuitarTodas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnQuitarTodas.Location = new System.Drawing.Point(692, 254);
+            this.BtnQuitarTodas.Name = "BtnQuitarTodas";
+            this.BtnQuitarTodas.Size = new System.Drawing.Size(88, 44);
+            this.BtnQuitarTodas.TabIndex = 37;
+            this.BtnQuitarTodas.Text = "Quitar    todas";
+            this.BtnQuitarTodas.UseVisualStyleBackColor = true;
+            this.BtnQuitarTodas.Click += new System.EventHandler(this.BtnQuitarTodas_Click);
+            // 
             // BtnAgregarTodas
             // 
             this.BtnAgregarTodas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -433,22 +451,6 @@
             this.ProgresBar.Name = "ProgresBar";
             this.ProgresBar.Size = new System.Drawing.Size(100, 16);
             this.ProgresBar.Visible = false;
-            // 
-            // BtnQuitarTodas
-            // 
-            this.BtnQuitarTodas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnQuitarTodas.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.BtnQuitarTodas.IconColor = System.Drawing.Color.Black;
-            this.BtnQuitarTodas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnQuitarTodas.IconSize = 20;
-            this.BtnQuitarTodas.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnQuitarTodas.Location = new System.Drawing.Point(692, 254);
-            this.BtnQuitarTodas.Name = "BtnQuitarTodas";
-            this.BtnQuitarTodas.Size = new System.Drawing.Size(88, 44);
-            this.BtnQuitarTodas.TabIndex = 37;
-            this.BtnQuitarTodas.Text = "Quitar    todas";
-            this.BtnQuitarTodas.UseVisualStyleBackColor = true;
-            this.BtnQuitarTodas.Click += new System.EventHandler(this.BtnQuitarTodas_Click);
             // 
             // InscripcionView
             // 

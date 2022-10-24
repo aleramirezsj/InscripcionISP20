@@ -1,13 +1,8 @@
 ﻿using Data.Interfaces;
 using Data.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Desktop.Views
@@ -25,28 +20,33 @@ namespace Desktop.Views
             InitializeComponent();
             MostrarOcultarTxt();
             this.unitOfWork = unitOfWork;
-            GetAllCarreras();
+            
             CargarComboCarreras();
 
-            GetAllAnios();
-            gridAnios.DataSource = listaAniosCarrera;
+            
+            
         }
 
         private async void GetAllAnios()
         {
             listaAniosCarrera.DataSource = await unitOfWork.AniocarreraRepository.GetAllAsync(filter: a => a.CarreraId1 == (int)comboBoxCarreras.SelectedValue);
+            gridAnios.DataSource = listaAniosCarrera;
         }
 
-        private void CargarComboCarreras()
+        private async void CargarComboCarreras()
         {
+            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAllAsync(orderBy: c => c.OrderBy(c => c.Nombre));
+
             comboBoxCarreras.DataSource = listaCarreras;
             comboBoxCarreras.DisplayMember = "Nombre";
             comboBoxCarreras.ValueMember = "Id";
+
+            GetAllAnios();
         }
 
         private async void GetAllCarreras()
         {
-            listaCarreras.DataSource = await unitOfWork.CarreraRepository.GetAllAsync(orderBy: c => c.OrderBy(c => c.Nombre));
+            
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

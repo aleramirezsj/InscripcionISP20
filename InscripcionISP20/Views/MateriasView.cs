@@ -20,7 +20,7 @@ namespace Desktop.Views
             this.unitOfWork = unitOfWork;
             GetAll();
             GridMaterias.DataSource = listaMaterias;
-            CargarComboBox();
+            
         }
 
         private async void CargarComboBox()
@@ -45,6 +45,7 @@ namespace Desktop.Views
         private async void GetAll()
         {
             listaMaterias.DataSource = await unitOfWork.MateriaRepository.GetAllAsync(include: c => c.Include(c => c.AnioCarreraId1Navigation).ThenInclude(c=>c.CarreraId1Navigation),orderBy: c => c.OrderBy(c => c.Nombre));
+            CargarComboBox();
 
         }
 

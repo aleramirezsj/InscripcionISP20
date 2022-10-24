@@ -26,11 +26,8 @@ namespace Desktop.Views
         {
             InitializeComponent();
             this.unitOfWork = unitOfWork;
-            CargarCboCicloLectivo();
-            GetAlumnos();
-            CargarCboCarrera();
-            CargarCboAño();
-            CargarMaterias();
+            CargaDeDatosDelFormulario();
+            AsociarEventosDePantalla();
             gridAlumnos.DataSource = ListaAlumnos;
             GridBuscarMateria.DataSource = ListaMaterias;
             GridMateriasInscriptas.DataSource = ListaMateriasInscriptas;
@@ -38,18 +35,63 @@ namespace Desktop.Views
 
         }
 
-        private async void CargarCboCicloLectivo()
+        private void AsociarEventosDePantalla()
+        {
+            GridMateriasInscriptas.DataBindingComplete += delegate
+            {
+                BtnQuitar.Enabled = GridMateriasInscriptas.Rows.Count > 0;
+                BtnQuitarTodas.Enabled = GridMateriasInscriptas.Rows.Count > 0;
+
+            };
+            
+            GridBuscarMateria.DataBindingComplete +=delegate
+            {
+                BtnAgregar.Enabled = GridBuscarMateria.Rows.Count > 0;
+                BtnAgregarTodas.Enabled = GridBuscarMateria.Rows.Count > 0;
+            };
+
+            gridAlumnos.DataBindingComplete += delegate
+            {
+                BtnSeleccionarAlumno.Enabled = gridAlumnos.Rows.Count > 0 && GridBuscarMateria.Rows.Count > 0;
+            };
+
+            GridBuscarMateria.DataBindingComplete += delegate
+            {
+                BtnSeleccionarAlumno.Enabled = gridAlumnos.Rows.Count > 0 && GridBuscarMateria.Rows.Count > 0;
+            };
+
+            gridAlumnos.DataBindingComplete += delegate {
+                BtnBuscar.Enabled = gridAlumnos.Rows.Count > 0 && TxtBuscarAlumno.Text.Trim().Length > 0;
+            };
+
+            TxtBuscarAlumno.TextChanged += delegate
+            {
+                BtnBuscar.Enabled = gridAlumnos.Rows.Count > 0 && TxtBuscarAlumno.Text.Trim().Length > 0;
+
+            };
+        }
+
+        private async Task CargaDeDatosDelFormulario()
+        {
+            await CargarCboCicloLectivo();
+            await GetAlumnos();
+            await CargarCboCarrera();
+            await CargarCboAño();
+            await CargarMaterias();
+        }
+
+        private async Task CargarCboCicloLectivo()
         {
    
              var listaCicloLectivo = await unitOfWork.CiclolectivoRepository.GetAllAsync();
-            cboCicloLectivo.DataSource = listaCicloLectivo;
+            cboCicloLectivo.DataSource = listaCicloLectivo.ToList();
             cboCicloLectivo.DisplayMember = "Nombre";
             cboCicloLectivo.ValueMember = "Id";
 
             cboCicloLectivo.SelectedValue = listaCicloLectivo.Where(c => c.Nombre.Contains(DateTime.Now.Year.ToString())).FirstOrDefault().Id;
         }
 
-        private async void CargarMaterias()
+        private async Task CargarMaterias()
         {
             if(CboAñoCarrera?.SelectedValue.GetType() == typeof(int) )
             {
@@ -61,7 +103,7 @@ namespace Desktop.Views
             }
         }
 
-        private async void CargarCboAño()
+        private async Task CargarCboAño()
         {
             var idCarrera = (int) CboCarreras.SelectedValue;
             var años = await unitOfWork.AniocarreraRepository.GetAllAsync(filter:a =>a.CarreraId1 == idCarrera,
@@ -71,7 +113,7 @@ namespace Desktop.Views
             CboAñoCarrera.ValueMember = "Id";
         }
 
-        private async void CargarCboCarrera()
+        private async Task CargarCboCarrera()
         {
 
             var carreras = await unitOfWork.CarreraRepository.GetAllAsync();
@@ -91,7 +133,7 @@ namespace Desktop.Views
             CboCarreras.AutoCompleteCustomSource = autoCompletado;
         }
 
-        private async void GetAlumnos()
+        private async Task GetAlumnos()
         {
             var alumnos = await unitOfWork.AlumnoRepository.GetAllAsync();
             ListaAlumnos.DataSource = alumnos;
@@ -114,7 +156,7 @@ namespace Desktop.Views
             EliminarInscripcionesDuplicadas();
         }
 
-        private async void CargarMateriasInscriptas()
+        private async Task CargarMateriasInscriptas()
         {
             ListaMateriasInscriptas.DataSource = await unitOfWork.InscripcionRepository.GetAllAsync(filter: i => i.CicloLectivoId == (int)cboCicloLectivo.SelectedValue && i.AlumnoId == alumnoSeleccionado.Id, include: i => i.Include( m => m.Materia).Include( m => m.Alumno ).Include(m => m.CicloLectivo));
         }
@@ -139,13 +181,14 @@ namespace Desktop.Views
             ListaMaterias.DataSource = materias;
         }
 
-        private void BtnAgregar_Click(object sender, EventArgs e)
+        private async void BtnAgregar_Click(object sender, EventArgs e)
         {
             materiaSeleccionada = (Materia)ListaMaterias.Current;
-
-            InsertarMateriaSeleccionada(materiaSeleccionada.Id);
+            BtnAgregar.Enabled = false;
+            BtnAgregarTodas.Enabled = false;
+            await InsertarMateriaSeleccionada(materiaSeleccionada.Id);
             unitOfWork.Save();
-            CargarMateriasInscriptas();
+            await CargarMateriasInscriptas();
             EliminarInscripcionesDuplicadas();
 
         }
@@ -180,27 +223,26 @@ namespace Desktop.Views
 
         private async void BtnQuitar_Click(object sender, EventArgs e)
         {
-            if (ListaMateriasInscriptas.Count > 0)
-            {
 
                 var inscripcionSeleccionada = (Inscripcion)ListaMateriasInscriptas.Current;
                 var respuesta = MessageBox.Show($"Esta seguro que desea eliminar la materia {inscripcionSeleccionada.Materia.Nombre} de la inscripcion", $"Eliminar Materia inscripta", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 if(respuesta == DialogResult.Yes)
                 {
+                    BtnQuitar.Enabled = false;
+                    BtnQuitarTodas.Enabled = false;
                     await unitOfWork.InscripcionRepository.DeleteAsync(inscripcionSeleccionada.Id);
                     unitOfWork.Save();
-                    CargarMateriasInscriptas();
-                    CargarMaterias();
+                    await CargarMateriasInscriptas();
+                    await CargarMaterias();
                     EliminarInscripcionesDuplicadas();
+                    
                 }
-            }
         }
 
         private async void BtnAgregarTodas_Click(object sender, EventArgs e)
         {
-            if (ListaMaterias.Count > 0)
-            {
-
+                BtnAgregarTodas.Enabled = false;
+            BtnAgregar.Enabled = false;
                 ProgresBar.Visible = true;
                 var incremento = Math.Floor(100 / (decimal)ListaMaterias.Count);
                 ProgresBar.Value = 0;
@@ -213,9 +255,8 @@ namespace Desktop.Views
 
                 unitOfWork.Save();
                 ProgresBar.Visible = false;
-                CargarMateriasInscriptas();
+                await CargarMateriasInscriptas();
                 EliminarInscripcionesDuplicadas();
-            }
         }
 
         private async void BtnQuitarTodas_Click(object sender, EventArgs e)
@@ -223,14 +264,16 @@ namespace Desktop.Views
             var respuesta = MessageBox.Show($"Esta seguro que desea eliminar todas las inscripciones a las materias", $"Eliminar inscripciones ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta == DialogResult.Yes)
             {
+                BtnQuitarTodas.Enabled =false;
+                BtnQuitar.Enabled = false;
                 foreach (Inscripcion inscripcion in ListaMateriasInscriptas)
                 {
                     await unitOfWork.InscripcionRepository.DeleteAsync(inscripcion.Id);
 
                 }
-                    unitOfWork.Save();
-                CargarMateriasInscriptas();
-                CargarMaterias();
+                unitOfWork.Save();
+                await CargarMateriasInscriptas();
+                await CargarMaterias();
                 EliminarInscripcionesDuplicadas();
 
             }
