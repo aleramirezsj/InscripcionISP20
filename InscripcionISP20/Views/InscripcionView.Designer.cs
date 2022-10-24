@@ -429,6 +429,7 @@ namespace Desktop.Views
             this.BtnVistaPrevia.TabIndex = 19;
             this.BtnVistaPrevia.Text = "Vista previa";
             this.BtnVistaPrevia.UseVisualStyleBackColor = true;
+            this.BtnVistaPrevia.Click += new System.EventHandler(this.BtnVistaPrevia_Click);
             // 
             // statusStrip1
             // 

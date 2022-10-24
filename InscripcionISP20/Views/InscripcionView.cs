@@ -1,5 +1,6 @@
 ﻿using Data.Interfaces;
 using Data.Models;
+using Desktop.ViewReports;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,7 @@ namespace Desktop.Views
             {
                 BtnQuitar.Enabled = GridMateriasInscriptas.Rows.Count > 0;
                 BtnQuitarTodas.Enabled = GridMateriasInscriptas.Rows.Count > 0;
+                PanelBotones.Enabled = GridMateriasInscriptas.Rows.Count > 0; 
 
             };
             
@@ -279,6 +281,12 @@ namespace Desktop.Views
             }
             
 
+        }
+
+        private void BtnVistaPrevia_Click(object sender, EventArgs e)
+        {
+            InscripcionReprotView inscripcionReportView = new InscripcionReprotView();
+            inscripcionReportView.ShowDialog();
         }
     }
 }
