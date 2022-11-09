@@ -12,7 +12,7 @@ namespace Data.Models
         {
             Inscripcions = new HashSet<Inscripcion>();
         }
-
+        //probando editar desde la web
         public int Id { get; set; }
         public string ApellidoNombre { get; set; }
 
